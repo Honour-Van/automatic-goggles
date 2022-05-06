@@ -1,0 +1,4 @@
+<image class="topimg" src="../../asset/top.svg"></image>
+<view class="title">开始找车吧</view>
+<view class="tips">LBS定位程序将从服务器上拉取自行车的定位，展示在地图上</view>
+<button class="mainbtn" bindtap="tomap">获取定位</button>

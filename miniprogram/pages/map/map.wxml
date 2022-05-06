@@ -1,0 +1,16 @@
+<map longitude="{{longitude}}" enable-3D="true" enable-building="true" latitude="{{latitude}}" bindregionchange="changeMap"  show-location="true" markers="{{[marker]}}"></map>
+
+<view class="info_model">
+	<view class="info_item">
+		<view>经纬度</view>
+		<view>{{info.location}}</view>
+	</view>
+	<view class="info_item">
+		<view>推荐地址</view>
+		<view>{{info.formatted}}</view>
+	</view>
+	<view class="info_item">
+		<view>常规地址</view>
+		<view>{{info.address}}</view>
+	</view>
+</view>

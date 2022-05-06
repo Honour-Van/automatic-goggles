@@ -1,0 +1,40 @@
+page{
+  width: calc(100% - 124rpx);
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  padding: 0 62rpx;
+}
+.topimg{
+  margin: 120rpx auto 60rpx;
+  width: 392rpx;
+  height: 392rpx;
+}
+.title{
+  font-family: PingFang-SC-Medium;
+  font-size: 34rpx;
+  text-align: center;
+  font-weight: 500;
+}
+.tips{
+  font-family: PingFang-SC-Regular;
+  margin-top: 18rpx;
+  font-size: 28rpx;
+  color: var(--lb-color);
+  text-align: center;
+  font-weight: 400;
+}
+.mainbtn{
+  margin-top: 72rpx;
+  height: 96rpx;
+  width: 100% !important;
+  line-height: 96rpx;
+  border-radius: 8rpx;
+  font-size: 34rpx;
+  padding: 0;
+  color: #FFFFFF;
+  background: var(--mb-color);
+}
+.mainbtn:active{
+  background: var(--zb-color);
+}
