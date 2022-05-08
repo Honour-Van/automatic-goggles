@@ -43,7 +43,7 @@ Page({
         }
       }
     })
-    that.traceBike()
+    that.geteBikeLocation()
   },
   /**
    * 地图范围改变
@@ -79,8 +79,20 @@ Page({
   /**
    * 请求获取自行车所在的经纬度
    */
-  async traceBike() {
-
+  async geteBikeLocation() {
+    wx.request({
+      url: 'https://flask-2abd-1901017-1311749828.ap-shanghai.run.tcloudbase.com/api/position',
+      success(res) {
+          console.log('success')
+          console.log(res.data)
+          const {latitude, longitude} = res.data.data;
+          that.setInfo([latitude, longitude], 2) // 只更改标记点
+          that.getLocation(res.data.data)
+      },
+      fail(res) {
+          console.log('failed')
+      }
+    })
   },
   /**
    * 统一设置经纬度信息和额外信息
