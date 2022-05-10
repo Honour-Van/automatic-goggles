@@ -14,3 +14,8 @@
 		<view>{{info.address}}</view>
 	</view>
 </view>
+<view class="ope_model">
+    <button type="default" id="btn_whistle">鸣笛</button>
+    <view class="tips">没找到？给我们反馈</view>
+</view>
+
