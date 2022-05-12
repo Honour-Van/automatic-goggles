@@ -80,19 +80,22 @@ Page({
    * 请求获取自行车所在的经纬度
    */
   async geteBikeLocation() {
-    wx.request({
-      url: 'https://flask-2abd-1901017-1311749828.ap-shanghai.run.tcloudbase.com/api/position',
-      success(res) {
-          console.log('success')
-          console.log(res.data)
-          const {latitude, longitude} = res.data.data;
+    const res = await wx.cloud.callContainer({
+        "config": {
+          "env": "prod-3g1xsb4ac69a2a97"
+        },
+        "path": "/api/position",
+        "header": {
+          "X-WX-SERVICE": "django-qix2"
+        },
+        "method": "GET",
+      }).then((res)=>{
+          let data = res.data.data;
+          console.log(data)
+          const {latitude, longitude} = data;
           that.setInfo([latitude, longitude], 2) // 只更改标记点
-          that.getLocation(res.data.data)
-      },
-      fail(res) {
-          console.log('failed')
-      }
-    })
+          that.getLocation(data)
+      })
   },
   /**
    * 统一设置经纬度信息和额外信息
@@ -115,5 +118,26 @@ Page({
       })
     }
     that.setData(data)
-  }
+  },
+    /**
+   * 统一设置经纬度信息和额外信息
+   * @param {array} pot 经纬度
+   * @param {number} type 类型 0-都设置 1-只设置中心点 2-只设置标记点
+   * @param {*} ext 额外的其他数据，一块带入
+   */
+  setWhistle (on = true) {
+    wx.request({
+        url: 'https://flask-2abd-1901017-1311749828.ap-shanghai.run.tcloudbase.com/api/position',
+        method: "POST",
+        data: {"calling": on ? "1" : "0"},
+        success(res) {
+            console.log('success')
+            console.log(res.data)
+        },
+        fail(res) {
+            console.log('failed')
+        }
+      })
+    }
+
 })
