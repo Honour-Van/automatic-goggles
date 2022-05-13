@@ -17,6 +17,9 @@ Page({
       adinfo: '-', // 行政区
       formatted: '-', // 推荐地址
       location: '-' // 经纬度
+    },
+    buzz:{
+        loading:false
     }
   },
   /**
@@ -119,25 +122,40 @@ Page({
     }
     that.setData(data)
   },
-    /**
-   * 统一设置经纬度信息和额外信息
-   * @param {array} pot 经纬度
-   * @param {number} type 类型 0-都设置 1-只设置中心点 2-只设置标记点
-   * @param {*} ext 额外的其他数据，一块带入
-   */
-  setWhistle (on = true) {
-    wx.request({
-        url: 'https://flask-2abd-1901017-1311749828.ap-shanghai.run.tcloudbase.com/api/position',
-        method: "POST",
-        data: {"calling": on ? "1" : "0"},
-        success(res) {
-            console.log('success')
-            console.log(res.data)
+   /**
+    * 
+    * @param {*} turn_on 设置鸣笛状态，true为响，false不响
+    */
+  async setBuzz () {
+    const res = await wx.cloud.callContainer({
+        "config": {
+            "env": "prod-3g1xsb4ac69a2a97"
         },
-        fail(res) {
-            console.log('failed')
+        "path": "/api/buzz",
+        "header": {
+            "X-WX-SERVICE": "django-qix2"
+        },
+        "method": "POST",
+        "data": {
+            "action": that.data.buzz.loading ? "off" : "on"
         }
-      })
+    }).then((res)=>{
+        that.setData({
+            buzz:{
+                loading:!that.data.buzz.loading
+            }
+        })
+    })
+    if (that.data.buzz.loading) {
+        await new Promise(resolve => setTimeout(resolve, 5000)).then(()=>{
+            that.setData({
+                buzz:{
+                    loading:false
+                }
+            })
+        })
     }
+  }
+
 
 })

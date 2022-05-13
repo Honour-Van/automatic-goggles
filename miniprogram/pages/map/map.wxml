@@ -15,7 +15,7 @@
 	</view>
 </view>
 <view class="ope_model">
-    <button type="default" id="btn_whistle">鸣笛</button>
+    <button type="default" id="btn_whistle" bindtap="setBuzz" loading="{{buzz.loading}}">鸣笛</button>
     <view class="tips">没找到？给我们反馈</view>
 </view>
 
