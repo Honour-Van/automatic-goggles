@@ -155,7 +155,28 @@ Page({
             })
         })
     }
-  }
-
+  },
+     /**
+    * 
+    * 用于对没找到的情况进行反馈
+    */
+   async feedback () {
+    await wx.cloud.callContainer({
+        "config": {
+            "env": "prod-3g1xsb4ac69a2a97"
+        },
+        "path": "/api/feedback",
+        "header": {
+            "X-WX-SERVICE": "django-qix2"
+        },
+        "method": "POST",
+        "data": {
+          "action":"inc",
+          "id":"2"
+        }
+    }).then((res)=>{
+        console.log('feedback success!')
+    })
+   }
 
 })

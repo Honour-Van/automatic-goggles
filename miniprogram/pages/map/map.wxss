@@ -108,3 +108,6 @@ map{
     border-radius: 16rpx;
     padding:10px;
   }
+  .link{
+      color:#4065b2
+  }
