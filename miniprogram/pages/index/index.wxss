@@ -33,8 +33,8 @@ page{
   font-size: 34rpx;
   padding: 0;
   color: #FFFFFF;
-  background: var(--mb-color);
+  background: #910a0d;
 }
 .mainbtn:active{
-  background: var(--zb-color);
+  background: #820508;
 }
